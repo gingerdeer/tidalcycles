@@ -1,0 +1,22 @@
+
+d1 $ slow 1.5 $ stack [
+  -- every 4 (rev) $ sound "drum sn:3 [drum sn:2] sn:3" # gain "1.2",
+  -- every 2 (rev) $ s "super808 supersnare [super808 supersnare] supersnare"
+  --   # voice "0.75" # sustain "0.5" # gain "1.5",
+  -- every (choose [2,4]) (slow 2) $ slow 2
+  --     $ fast 2 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+  --     $ n (scramble 8 "[d4 a4] d4 [d4 as4] f5 [d4 g4] as4 [d4 f4] g4")
+  --     # s "supermandolin"  # pan (slow 16 (sine))
+  --     # gain "1.0" # sustain "1.5" # room 0.9 # size 0.9 # delay 1.0 # crush 7,
+  -- every 2 (slow (choose [3, 2])) $ slow 2
+  --     $ n (scramble 4 "[d4,f4,a3] [as3,f3] [f4,d3,a3] [e3,g3]")
+  --     # s "supercomparator" # gain 0.75 # sustain 2.0 # attack 1.5 # room 0.6 # size 0.9,
+  -- s "superkick ~ superkick ~" # accelerate "-0.9" # room 0.6 # size 0.6 # gain 2.5
+   sound "bd:2 ~ bd:2 ~" # room 0.6 # size 0.9 # crush 12 # gain 1.4 # delay 0.1 # cutoff 110
+  -- 
+  --    sound "ho*2" # pan (slow 8 (rand)) # gain 0.4 # crush 4,
+  --    slow 1 $ sound "cp" # gain "0.5"
+]
+
+hush
+

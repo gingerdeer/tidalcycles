@@ -1,0 +1,41 @@
+-- loopMIDI
+import Sound.Tidal.MIDI.Context
+
+displayOutputDevices >>= putStrLn
+
+devices <- midiDevices
+
+m1 <- midiStream devices "Microsoft MIDI Mapper" 0 synthController
+m2 <- midiStream devices "Microsoft GS Wavetable Synth" 1 synthController
+
+m3 <- midiStream devices "loopMIDI Port" 3 synthController
+
+m3 $ silence
+
+m3 $ n "cs4 a4/2"
+
+m3  $ slow 6 $ every (choose [2,4,8,16]) (degradeBy 0.4 . slow (choose [1,2])) $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+
+m3 $ every (choose[64,32,32,64,128]) (rev) $ stack [
+-- every (choose [8,16,32]) (degradeBy 0.25 . slow 2) $
+every (choose [2,4,8,16]) (degradeBy 0.2 . slow (choose [1,2])) $ degradeBy 0.01 $ slow 8 $ every 4 (degradeBy 0.25 . fast 0.5)  $ every (choose [1,1]) (degradeBy 0.15 . gap 2 . loopAt 2 . fast 1 . striate 32 . degradeBy 0.5 . slow 4) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+
+m3 $ slow 1 $ every (choose[64,32,32,64,128]) (slow 1) $ stack [
+-- every (choose [8,16,32]) (degradeBy 0.25 . slow 2) $
+every (choose [2,4,8,16]) (degradeBy 0.2 . slow (choose [1,2])) $ degradeBy 0.01 $ slow 4
+-- $ fast 4 $ n "[a4,c5] [a4,d5] [ef4,fs4] [d4,f4] ~ ~ [d4,f4] ~"
+-- $ fast 4 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+--   $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 1 rev . degradeBy 0.95 . fast 1) $ fast 1 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+-- $ slow 4 $ every 4 (degradeBy 0.25 . fast 2)  $ every (choose [1,1]) (fast 0.25 . striate 64 . every 1 rev . degradeBy 0.9 . fast 1) $ n (scramble 8 "[d4 a4] [d4,f4] [d4 a4] [d4,f4] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f4,a4] [d4 g4] as4 [d4 fs4] g4")
+-- $ slow 1 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.25 . gap 4 . loopAt 2 . fast 0.5 . striate 32 . every 2 rev . degradeBy 0.95 . fast 2)  $ n (scramble 16 "[d4,f4] [[fs4,a4] [f4,ds4]] [[ds5,a5] [f5, d5]] [[fs4,as4] [f4,a4]] [f5,a5] [a4, e5] [[f4,a4] [f4 d4]] [e5,a5] [e5 [f5, d5]] e5 [f4,a4] d5")
+-- $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . gap 4 . loopAt 2 . fast 2 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+ $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . gap 4 . loopAt 2 . fast 2 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 4 $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 4 "[d4 a4] [d4,f4] [d4 as4] [d3,f3] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f3,a3] [d4 g4] as4 [d4 fs4] g4")
+-- $ slow 8 . striate 8 $ n (scramble 16 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ (fast 2 . degradeBy 0.05) $ n (scramble 4 "[c4,g4] d4 [fs4,as4] [ds5 as4] [d4,g4,a4] c4 [ds4,g4] g4 [c4,g4] d4 [c4,c5] [as4,ds5] [ds4,fs4,gs4] [c4,e4] [ds4,g4] [g4 ds4]")
+-- $ fast 2 $ every 8 (degradeBy 0.5 . slow 2) $ n (scramble 4 "a5 [c5,ds5] [fs5 d5] [df5 e5] [c5,ds5] [c5,ds5] [d5,fs5] [e5 fs5] [as4 fs4] e5]")
+-- $ degradeBy 0.01 $ slow 1 $ every (choose [1,2]) (slow 8 . striate 128 . every 1 rev . degradeBy 0.97 . fast 1) $ n (scramble 2 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 0.5 $ every 4 (degradeBy 0.2 . fast 2) $ n (scramble 2 "[d4,f4] [[fs4,a4] [f4,ds4]] [[ds5,a5] [f5, d5]] [[fs4,as4] [f4,a4]] [f5,a5] [a4, e5] [[f4,a4] [f4 d4]] [e5,a5] [e5 [f5, d5]] e5 [f4,a4] d5")
+-- $ degradeBy 0.01 $ every (choose [1,2,1,2]) (slow 2 . striate 16 . rev . degradeBy 0.6 . fast 0.25) $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+-- $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+]

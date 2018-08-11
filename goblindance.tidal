@@ -1,0 +1,18 @@
+bps(160 / 120)
+
+d1 $ stack [
+goblindance
+  sound "bd:3 bd:3 bd:3 [bd:3 bd:3]" # room 0.4 # size 0.4
+   # crush 8 # gain 1.1 # hcutoff 200 # cutoff 440 # sustain 0.1,
+  sound "ho*2" # pan (slow 8 (sine)) # gain 0.4 # crush 6,
+  every 8 (degrade . fast 2) $ sound "~ cp ~ cp" # gain 0.65
+]
+
+d2 $ stack [
+every 2 (slow (choose [3, 2])) $ fast 1
+    $ n (scramble 4 "[d4,f3,a3] [as3,f3] [f3,d3,a3] [e3,g3]")
+    # s "supercomparator" # gain 1.0 # sustain 1.0 # attack 0.15 # room 0.6 # size 0.9 # delay 0.2
+
+]
+
+hush

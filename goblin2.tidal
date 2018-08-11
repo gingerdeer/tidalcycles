@@ -1,0 +1,24 @@
+bps(180 / 120)
+
+d1 $ stack [
+   --every 8 (degradeBy 0.5 . fast 2) $ sound "bd:3 ~ bd:3 [bd:3 bd:3]" # room 0.1 # size 0.1
+  every 2 (fast 2) $ sound "bd:3 ~ bd:3 ~" # room 0.1 # size 0.1
+    # crush 5 # gain 1.2 # hcutoff 100 # cutoff 330 # sustain 0.1,
+   sound "ho*2" # pan (slow 8 (sine)) # gain 0.4 # crush 6,
+   every 16 (degradeBy 0.5 . fast 2) $
+    sound "~ cp ~ cp" # gain 0.65 # delay 0.3,
+   every 2 (fast (choose [2,4,6,8,16])) $ sound "tink/4" # pan (rand) # gain 0.95,
+   every 2 (fast (choose [2,4,6,8,16])) $ sound "can/6" # pan (rand) # gain 0.95
+]
+
+d1 $ silence
+
+d2 $ stack [
+every 2 (slow (choose [3, 2])) $ slow 1
+    $ every 4 (degradeBy 0.25 . fast 1) $ every (choose [1,2]) (loopAt 2 . striate 16 . every 1 rev . degradeBy 0.8 . fast 1) $ n (scramble 4 "[d4,f3,as3] [as3,g3] [f3,d3,as3] [ef3,g3]")
+    # s "supercomparator" # gain 1.0 # sustain 0.25
+    # attack 0.35 # room 0.1 # size 0.1 # delay 0.0
+    # crush 8
+]
+
+hush

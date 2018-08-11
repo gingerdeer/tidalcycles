@@ -1,0 +1,140 @@
+cps(120/60/4)
+
+d1 $ slow 1 $ every (choose[8,16,64,32,32,64,128]) (fast 2 . rev) $ stack [
+every (choose [10,20,30]) (fast 2) $
+every (choose [2,4,8]) (slow (choose [2,4])) $ slow 2
+-- $ fast 4 $ n "a4 as4 d4 d4"
+ -- $ slow 2 $   n (scramble 2 "e4 e4 f4 f4 e4 e4 [ds4,g4] [ds4,g4] [d4,g4] [d4,g4] [c4,g4] [g4 ~ c4] [[d4,f4] ~ [c4,e4]] f4 e4 e4")
+--  $ slow 2 $ n (scramble 8 "[d4 a4] d4 [d4 as4] d3 [d4 g4] as4 [d4 f4] g4 [d4 a4] d4 [d4 as4] f3 [d4 g4] as4 [d4 f4] g4")
+-- $ n (scramble 8 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ slow 1 $ n (scramble 4 "[c4,g4] ds4 as4 [as4,f5] [d4,g4,a4] c4 [ds4,g4] g4 [c4,g4] ds4 e5 [as4,f5] [ds4,fs4,as4] c4 [ds4,g4] g4")
+-- $ slow 1 $ n (scramble 8 "[a5,e5] [c5,ds5] [d5,f5] [ds5 e5] [a5,e5] [c5,ds5] [d5,f5] [[e5,g5] [a5,e5]]")
+-- $ slow 2 $ n (scramble 8 "fs4 g4 a4 as4 [fs4,a4] [fs4 as4] [as4 gs4] [f4 f4] g4 [g4,b4] fs4 c5 as4 [fs4,a4] [a4,c5] [as4,c5]")
+-- $ n (scramble 4 "[d5,f5] [d5,f5] [g5,b5] [g5,a5] [f5,a5] [f5,as5] [f5,a5] [a5 f5] [a5 e5] [e5,a5] [d5,a5] [a5,d5] [[e5,g5] [d5,f5]] g5 f5 f5")
+-- $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+  $ every (choose [1,1]) (linger 0.5 . degradeBy 0.25 . gap 1 . loopAt 4 . fast 1 . striate 128 . degradeBy 0.95 . fast 2)  $ slow 4 $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+# s "superpwm" # pan (slow 64 (sine)) # gain 0.7 # sustain 6 # crush 7
+-- # room 0.6 # size 0.6
+# attack 5 # release 1 # lfo 2 -- # delay 0.5
+]
+
+d2 $ stack [
+-- every (choose [10,20,30]) (fast 2) $
+every (choose [2,4,8]) (slow (choose [2,4])) $ slow 2
+--  $ n "a3 as3 d3 d3"
+-- $ slow 4 $ n (scramble 8 "[d3 a3] d3 [d3 as3] f3 [d3 g3] as3 [d3 f3] g3 [d3 a3] d3 [d3,as3] f4 [d3,g3] as3 [d3,f3] g3")
+-- $ slow 4 $ n (scramble 8 "[d2,a2] d2 [d2 as2] f2 [d2 g2] as2 [d2 f2] g2 [d2 a2] d2 [d2,as2] f3 [d2,g2] as2 [d2,f2] g2")
+-- $ slow 4 $ n (scramble 4 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ slow 4 $ n (scramble 4 "[c4 g4] ds4 as4 [as4 f5] [ds4 g4 as4] c4 [ds4 g4] g4 [c4,g4] ds4 as4 [as4 f5] [ds4,g4,as4] c4 [ds4,g4] g4")
+-- $ slow 4 $ n (scramble 4 "fs4 g4 a4 as4 [fs4,a4] [fs4 as4] [as4 gs4] [f4 f4] g4 [g4,b4] fs4 c5 as4 [fs4,a4] [a4,c5] [as4,c5]")
+-- $ slow 4 $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+   $ every (choose [1,1]) (linger 0.5 . degradeBy 0.25 . gap 1 . loopAt 4 . fast 1 . striate 128 . degradeBy 0.95 . fast 2)  $ slow 4 $ n (scramble 4 "d2 d2 g2 g2 f2 f2 [fs2,a2] [fs2,a2] [e2,a2] [e2,a2] [d2,a2] [a2,d2] [[e2,g2] [d2,f2]] g2 f2 f2")
+# s "supersaw" # gain 0.7 # sustain 10
+# attack 3 # release 10 # lfo 20
+]
+
+d3 $ every 32 (striate 16) $ every (choose [4,8,16]) (degradeBy 0.25) $ slow 1 $ stack [
+-- every (choose [64,128]) (fast 2) $ sound "bd:3 ~ [ ~ bd:3] ~" # gain 1.4 # room 0.6 # size 0.6 # attack 0.2,
+-- slow 1 $ degradeBy 0.05 $ sound "~ cp ~ [cp ~]" # gain 0.9 # attack 0.5,
+every (choose [64,128]) (fast 2) $ sound "bd:3 ~ bd:3 ~" # gain 1,
+every 2 (degradeBy 0.1) $ slow 1 $ sound "~ cp ~ cp" # gain 0.9 # attack 0.75
+-- every 2 (slow 2) $ sound "ho*4" # gain 0.6 # pan (slow 16 (sine)),
+--slow 2 $ every 2 (degradeBy 0.5 . fast (choose [1,2,4,6,8,16])) $ degradeBy 0.5 $ striate 64 $ fast 2 $ sound "tink" # pan (rand) # gain 0.05 # crush 7 # room 0.3 # size 0.3,
+-- every 2 (fast (choose [1,2,4,6,8,16])) $ sound "can/8" # pan (rand) # gain 0.95 # crush 5
+] # gain 1.9
+
+
+d4 $ slow 1 $ every (choose[16,64,32,32,64,128]) (slow 2) $ stack [
+every (choose [8,16,32]) (degradeBy 0.25 . slow 2) $
+every (choose [2,4,8,16]) (degradeBy 0.25 . slow (choose [2,4])) $ degradeBy 0.05 $ slow 4
+-- $ fast 4 $ n "[a4,c5] [a4,d5] [ef4,fs4] [d4,f4] ~ ~ [d4,f4] ~"
+-- $ fast 4 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+-- $ slow 2 $ every 4 (degradeBy 0.25 . fast 2)  $ every (choose [1,1,2]) (fast 0.25 . striate 64 . every 1 rev . degradeBy 0.98 . fast 2) $ n (scramble 4 "[d4 a4] [d4,f4] [d4 a4] [d4,f4] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f4,a4] [d4 g4] as4 [d4 fs4] g4")
+ -- $ slow 4 $ every 4 (degradeBy 0.2 . fast 2)  $ every (choose [1,1,2]) (fast 1 . striate 64 . every 2 rev . degradeBy 0.95 . fast 1) $ n (scramble 4 "[d4 a4] [d4,f4] [d4 as4] [d3,f3] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f3,a3] [d4 g4] as4 [d4 fs4] g4")
+--  $ slow 4 $ every 4 (degradeBy 0.2 . fast 2)  $ every (choose [1,1,2]) (fast 1 . striate 64 . every 2 rev . degradeBy 0.95 . fast 1) $ n (scramble 1 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+  $ slow 8 $ every 4 (degradeBy 0.05 . fast 1) $ every (choose [1,2]) (linger 0.5 . degradeBy 0.25 . gap 2 . loopAt 2 . fast 1 . striate 128 . degradeBy 0.85 . fast 2)  $  every (choose [1,1]) (degradeBy 0.05 . linger 0.75 . gap 4 . loopAt 2 . slow 1 . striate 64 . degradeBy 0.85 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 8 . striate 8 $ n (scramble 16 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ (fast 2 . degradeBy 0.05) $ n (scramble 4 "[c4,g4] d4 [fs4,as4] [ds5 as4] [d4,g4,a4] c4 [ds4,g4] g4 [c4,g4] d4 [c4,c5] [as4,ds5] [ds4,fs4,gs4] [c4,e4] [ds4,g4] [g4 ds4]")
+-- $ fast 2 $ every 8 (degradeBy 0.5 . slow 2) $ n (scramble 4 "a5 [c5,ds5] [fs5 d5] [df5 e5] [c5,ds5] [c5,ds5] [d5,fs5] [e5 fs5] [as4 fs4] e5]")
+-- $ degradeBy 0.01 $ slow 1 $ every (choose [1,2]) (slow 4 . striate 64 . every 1 rev . degradeBy 0.97 . fast 1) $ n (scramble 2 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 0.5 $ every 4 (degradeBy 0.2 . fast 2) $ n (scramble 2 "[d4,f4] [[fs4,a4] [f4,ds4]] [[ds5,a5] [f5, d5]] [[fs4,as4] [f4,a4]] [f5,a5] [a4, e5] [[f4,a4] [f4 d4]] [e5,a5] [e5 [f5, d5]] e5 [f4,a4] d5")
+-- $ degradeBy 0.05 $ every (choose [1,2,1,2]) (slow 2 . striate 16 . rev . degradeBy 0.5 . fast 0.25) $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+-- $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+# s "supermandolin" # pan (slow 2048 (sine)) # gain 0.9 # sustain 7 # crush 7
+# room 0.4 # size 0.4 # voice 1.2 -- # delay 1
+# attack 0.1 # release 7,
+every 2 (slow 2) $ slow 1
+$ n (scramble 4 "[d4,f4,a3] [as3,f3] [f4,d3,a3] [e3,g3]")
+# s "supercomparator" # gain 0 # sustain 4.0 # attack 2.0 # release 4
+# lfo 1
+]
+
+d5 $ slow 128 $ every (choose[16,64,32,32,64,128]) (slow 1) $ every (choose [1,1]) (degradeBy 0.5 . slow 1 . loopAt 0.25 . gap 4 . striate 128 . degradeBy 0.5 . fast 1) $ stack [
+-- every (choose [8,16,32]) (degradeBy 0.25 . slow 2) $
+every (choose [2,4,8,16]) (degradeBy 0.2 . slow (choose [1,2])) $ degradeBy 0.01 $ slow 8
+-- $ fast 4 $ n "[a4,c5] [a4,d5] [ef4,fs4] [d4,f4] ~ ~ [d4,f4] ~"
+-- $ fast 4 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+--   $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 1 rev . degradeBy 0.95 . fast 1) $ fast 1 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+-- $ slow 8 $ every 4 (degradeBy 0.25 . fast 2)  $ every (choose [1,1]) (fast 0.25 . striate 64 . every 1 rev . degradeBy 0.9 . fast 1) $ n (scramble 8 "[d4 a4] [d4,f4] [d4,a4] [d4,f4] [d4,g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f4,a4] [d4 g4] as4 [d4 fs4] g4")
+    $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (linger 0.75 . degradeBy 0.25 . gap 2 . loopAt 1 . fast 1 . striate 128 . degradeBy 0.95 . fast 2)  $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+ -- $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (linger 0.75 . degradeBy 0.05 . gap 2 . loopAt 2 . fast 2 . striate 128 . degradeBy 0.95 . fast 2)  $ n (scramble 16 "[d4,f4] [[f4,a4] [f4,ds4]]/2 [[ds5,a5] [f5, d5]]/2 [[f4,as4] [f4,a4]]/2 [f5,a5] [a4, e5] [[f4,a4] [f4 d4]]/2 [e5,a5] [e5 [f5, d5]]/2 e5 [f4,a4] d5")
+-- $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . gap 4 . loopAt 2 . fast 2 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 8 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . linger 0.5 . gap 2 . loopAt 2 . slow 1 . striate 64 . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 4 $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 4 "[d4 a4] [d4,f4] [d4 as4] [d3,f3] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f3,a3] [d4 g4] as4 [d4 fs4] g4")
+-- $ slow 8 . striate 8 $ n (scramble 16 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ (fast 2 . degradeBy 0.05) $ n (scramble 4 "[c4,g4] d4 [fs4,as4] [ds5 as4] [d4,g4,a4] c4 [ds4,g4] g4 [c4,g4] d4 [c4,c5] [as4,ds5] [ds4,fs4,gs4] [c4,e4] [ds4,g4] [g4 ds4]")
+-- $ fast 2 $ every 8 (degradeBy 0.5 . slow 2) $ n (scramble 4 "a5 [c5,ds5] [fs5 d5] [df5 e5] [c5,ds5] [c5,ds5] [d5,fs5] [e5 fs5] [as4 fs4] e5]")
+-- $ degradeBy 0.01 $ slow 1 $ every (choose [1,2]) (slow 8 . striate 128 . every 1 rev . degradeBy 0.97 . fast 1) $ n (scramble 2 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 0.5 $ every 4 (degradeBy 0.2 . fast 2) $ n (scramble 2 "[d4,f4] [[fs4,a4] [f4,ds4]] [[ds5,a5] [f5, d5]] [[fs4,as4] [f4,a4]] [f5,a5] [a4, e5] [[f4,a4] [f4 d4]] [e5,a5] [e5 [f5, d5]] e5 [f4,a4] d5")
+-- $ degradeBy 0.01 $ every (choose [1,2,1,2]) (slow 2 . striate 16 . rev . degradeBy 0.6 . fast 0.25) $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+-- $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+# s "superpiano" # pan (slow 2048 (sine)) # gain 0.8 # sustain 4 # crush 7
+-- # room 0.4 # size 0.4 -- # delay 0.1
+# attack 0.1 # release 2,
+every (choose [2,4,8,16]) (degradeBy 0.2 . slow (choose [1,2])) $ degradeBy 0.01 $ slow 8
+-- $ fast 4 $ n "[a4,c5] [a4,d5] [ef4,fs4] [d4,f4] ~ ~ [d4,f4] ~"
+-- $ fast 4 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+--   $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 1 rev . degradeBy 0.95 . fast 1) $ fast 1 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+-- $ slow 8 $ every 4 (degradeBy 0.25 . fast 2)  $ every (choose [1,1]) (fast 0.25 . striate 64 . every 1 rev . degradeBy 0.9 . fast 1) $ n (scramble 8 "[d4 a4] [d4,f4] [d4,a4] [d4,f4] [d4,g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f4,a4] [d4 g4] as4 [d4 fs4] g4")
+$ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (linger 0.75 . degradeBy 0.25 . gap 2 . loopAt 1 . fast 1 . striate 128 . degradeBy 0.95 . fast 2)  $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+ -- $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (linger 0.75 . degradeBy 0.05 . gap 2 . loopAt 2 . fast 2 . striate 128 . degradeBy 0.95 . fast 2)  $ n (scramble 16 "[d4,f4] [[f4,a4] [f4,ds4]]/2 [[ds5,a5] [f5, d5]]/2 [[f4,as4] [f4,a4]]/2 [f5,a5] [a4, e5] [[f4,a4] [f4 d4]]/2 [e5,a5] [e5 [f5, d5]]/2 e5 [f4,a4] d5")
+-- $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . gap 4 . loopAt 2 . fast 2 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 8 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . linger 0.5 . gap 2 . loopAt 2 . slow 1 . striate 64 . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 4 $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 4 "[d4 a4] [d4,f4] [d4 as4] [d3,f3] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f3,a3] [d4 g4] as4 [d4 fs4] g4")
+-- $ slow 8 . striate 8 $ n (scramble 16 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ (fast 2 . degradeBy 0.05) $ n (scramble 4 "[c4,g4] d4 [fs4,as4] [ds5 as4] [d4,g4,a4] c4 [ds4,g4] g4 [c4,g4] d4 [c4,c5] [as4,ds5] [ds4,fs4,gs4] [c4,e4] [ds4,g4] [g4 ds4]")
+-- $ fast 2 $ every 8 (degradeBy 0.5 . slow 2) $ n (scramble 4 "a5 [c5,ds5] [fs5 d5] [df5 e5] [c5,ds5] [c5,ds5] [d5,fs5] [e5 fs5] [as4 fs4] e5]")
+-- $ degradeBy 0.01 $ slow 1 $ every (choose [1,2]) (slow 8 . striate 128 . every 1 rev . degradeBy 0.97 . fast 1) $ n (scramble 2 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 0.5 $ every 4 (degradeBy 0.2 . fast 2) $ n (scramble 2 "[d4,f4] [[fs4,a4] [f4,ds4]] [[ds5,a5] [f5, d5]] [[fs4,as4] [f4,a4]] [f5,a5] [a4, e5] [[f4,a4] [f4 d4]] [e5,a5] [e5 [f5, d5]] e5 [f4,a4] d5")
+-- $ degradeBy 0.01 $ every (choose [1,2,1,2]) (slow 2 . striate 16 . rev . degradeBy 0.6 . fast 0.25) $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+-- $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+# s "superpiano" # pan (rev $ slow 2048 (sine)) # gain 0.8 # sustain 4 # crush 9
+-- # room 0.4 # size 0.4 -- # delay 0.1
+# attack 0.1 # release 2,
+every (choose [2,4,8,16]) (degradeBy 0.2 . slow 1) $ degradeBy 0.01 $ slow 8
+-- $ fast 4 $ n "[a4,c5] [a4,d5] [ef4,fs4] [d4,f4] ~ ~ [d4,f4] ~"
+-- $ fast 4 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+--   $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 1 rev . degradeBy 0.95 . fast 1) $ fast 1 $ n "[a4,c5] [as4,d5] [d4,f4] [d4,f4]"
+-- $ slow 8 $ every 4 (degradeBy 0.25 . fast 2)  $ every (choose [1,1]) (fast 0.25 . striate 64 . every 1 rev . degradeBy 0.9 . fast 1) $ n (scramble 8 "[d4 a4] [d4,f4] [d4,a4] [d4,f4] [d4,g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f4,a4] [d4 g4] as4 [d4 fs4] g4")
+ $ slow 2 $ every (choose [1,1]) (degradeBy 0.75 . gap 2 . linger 0.25 . loopAt 2 . fast 1 . striate 64 . degradeBy 0.9 . fast 2)  $ n (scramble 16 "[c3,g3] d3 [fs,as3] [ds4 as3] [d3,g3,a3] c3 [ds3,g3] g3 [c3,g3] d3 [c3,c3] [as3,ds4] [ds3,f3,as3] [c3,e3] [ds3,g3] [g3 ds3]")
+-- $ slow 4 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . gap 4 . loopAt 2 . fast 2 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 8 $ every 4 (degradeBy 0.25 . fast 1)  $ every (choose [1,1]) (degradeBy 0.15 . linger 0.5 . gap 2 . loopAt 2 . slow 1 . striate 64 . degradeBy 0.9 . fast 1) $ n (scramble 16 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 4 $ every 4 (degradeBy 0.01 . fast 2)  $ every (choose [1,1,2]) (fast 0.5 . striate 32 . every 2 rev . degradeBy 0.9 . fast 1) $ n (scramble 4 "[d4 a4] [d4,f4] [d4 as4] [d3,f3] [d4 g4] as4 [d4,fs4] g4 [d4,a4] d4 [d4 as4] [f3,a3] [d4 g4] as4 [d4 fs4] g4")
+-- $ slow 8 . striate 8 $ n (scramble 16 "[ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4 [ds4 as4] ds4 [ds4 as4] f5 [ds4 a4] c4 [ds4 g4] a4")
+-- $ (fast 2 . degradeBy 0.05) $ n (scramble 4 "[c4,g4] d4 [fs4,as4] [ds5 as4] [d4,g4,a4] c4 [ds4,g4] g4 [c4,g4] d4 [c4,c5] [as4,ds5] [ds4,fs4,gs4] [c4,e4] [ds4,g4] [g4 ds4]")
+-- $ fast 2 $ every 8 (degradeBy 0.5 . slow 2) $ n (scramble 4 "a5 [c5,ds5] [fs5 d5] [df5 e5] [c5,ds5] [c5,ds5] [d5,fs5] [e5 fs5] [as4 fs4] e5]")
+-- $ degradeBy 0.01 $ slow 1 $ every (choose [1,2]) (slow 8 . striate 128 . every 1 rev . degradeBy 0.97 . fast 1) $ n (scramble 2 "[ ~ ~ fs4] [~ [g4,b4]] [~ a4 ~] [~ [fs4,as4]] [fs4 ~ a4/2] [[fs4,a4] ~ a4] [as4 [ds4, gs4] ds4] [f4 [f4,a4] f4] [~ ds4,g4] [[g4,b4] ~] [~ [fs4,as4]] [c4 ~ ~] [ ~ ~ as4] [fs4,as4] [as4 g4 ~] [[c4,ds4] ~]")
+-- $ slow 0.5 $ every 4 (degradeBy 0.2 . fast 2) $ n (scramble 2 "[d4,f4] [[fs4,a4] [f4,ds4]] [[ds5,a5] [f5, d5]] [[fs4,as4] [f4,a4]] [f5,a5] [a4, e5] [[f4,a4] [f4 d4]] [e5,a5] [e5 [f5, d5]] e5 [f4,a4] d5")
+-- $ degradeBy 0.01 $ every (choose [1,2,1,2]) (slow 2 . striate 16 . rev . degradeBy 0.6 . fast 0.25) $ n (scramble 4 "d4 d4 g4 g4 f4 f4 [fs4,a4] [fs4,a4] [e4,a4] [e4,a4] [d4,a4] [a4 d4] [[e4,g4] [d4,f4]] g4 f4 f4")
+-- $ n (scramble 4 "d3 d3 g3 g3 f3 f3 [fs3,a3] [fs3,a3] [e3,a3] [e3,a3] [d3,a3] [a3 d3] [[e3,g3] [d3,f3]] g3 f3 f3")
+# s "superpiano" # gain 0.8 # sustain 9 # crush 9
+-- # room 0.4 # size 0.4 -- # delay 0.1
+# attack 0.1 # release 2
+] # room 0.3 # size 0.3
+
+d1 $ silence
+d2 $ silence
+d3 $ silence
+d4 $ silence
+d5 $ silence
+hush
